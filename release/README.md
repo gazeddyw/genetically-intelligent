@@ -1,4 +1,4 @@
-genetically-intelligent
+Release
 =======================
 
-A C library for a genetic algorithm to solve TSP problems
+Directory to house the release version of software
