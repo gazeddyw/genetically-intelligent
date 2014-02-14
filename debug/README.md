@@ -1,4 +1,4 @@
-genetically-intelligent
+Debug
 =======================
 
-A C library for a genetic algorithm to solve TSP problems
+Directory for housing debug releases of software
