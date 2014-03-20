@@ -1,18 +1,75 @@
 /* 
  * File:   main.c
- * Author: gareth
+ * Author: Gareth Williams
  *
  * Created on 20 March 2014, 15:51
  */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <getopt.h>
+#include "parser.h"
+
+
+// Struct to store command line options
+struct globalArgs_t
+{
+    int num; /* -d option */
+    char **inputFiles; /* input files */
+    int numOfInputFiles; /* # of input files */
+    int randomize; /* --randomize option */
+}
+globalArgs;
+
+// option string
+static const char *optString = "f:h";
+
+// Array of option structs to hold info about long options supported
+static const struct option longOpts[] = {
+    { "file-name", required_argument, NULL, 'f' },
+    { "rand-int", no_argument, NULL, 0 },
+    { "help", no_argument, NULL, 'h' },
+    { NULL, no_argument, NULL, 0 }
+};
+
+
+void display_usage();
+
 
 /*
  * 
  */
 int main(int argc, char *argv[]) {
 
+    int opt;
+    int longIndex;
+
+    while((opt = getopt_long(argc, argv, optString,
+                                longOpts, &longIndex)) != -1)
+    {
+        switch (opt)
+        {
+        case 'f':
+            globalArgs.num = atoi(optarg);
+            break;
+
+        case 'h': /* fall-through intentional */
+        case '?':
+            display_usage();
+            break;
+
+        case 0: /* long option without a short equivalent */
+            if (strcmp("rand-int", longOpts[longIndex].name) == 0)
+            {
+                globalArgs.randomize = 1;
+            }
+            break;
+
+        default:
+            break;
+        }
+    }
     return (EXIT_SUCCESS);
 }
 
