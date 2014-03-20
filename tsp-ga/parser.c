@@ -8,21 +8,27 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "parser.h"
 
 
-void read_file(char *fileName)
+/**
+ * 
+ * @param fileName The file to be read in
+ */
+void read_file(const char *fileName)
 {
     FILE *fp;
-    char *path = strcat(FILE_PATH, fileName);
+    char *path = malloc(sizeof(FILE_PATH) + sizeof(fileName));
+    strcpy(path, FILE_PATH);
+    strcat(path, fileName);
     
-    if ((fp = fopen(path, "r")) != NULL)
-    {
-        printf("File opened\n");
-    }
-    else 
+    if ((fp = fopen(path, "r")) == NULL)
     {
         printf("Error opening file\n");
     }
+    printf("File %s opened\n", fileName);
     
+    free(path);
+    fclose(fp);
 }

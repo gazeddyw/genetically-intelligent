@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>parser.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -37,10 +38,25 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <standard>2</standard>
+          <commandlineTool>gcc</commandlineTool>
+          <warningLevel>3</warningLevel>
+        </cTool>
+        <ccTool>
+          <standard>4</standard>
+          <warningLevel>3</warningLevel>
+        </ccTool>
+        <asmTool>
+          <commandlineTool>as</commandlineTool>
+          <warningLevel>3</warningLevel>
+        </asmTool>
       </compileType>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="parser.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="parser.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -53,6 +69,8 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <standard>3</standard>
+          <warningLevel>3</warningLevel>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
@@ -67,6 +85,8 @@
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="parser.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="parser.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

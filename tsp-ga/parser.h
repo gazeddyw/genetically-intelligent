@@ -16,7 +16,7 @@ extern "C" {
 #define FILE_PATH "/home/gareth/tsp/"
 
 
-void read_file(char *fileName);
+void read_file(const char *fileName);
 
 
 #ifdef	__cplusplus

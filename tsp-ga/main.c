@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <getopt.h>
 #include "parser.h"
@@ -15,7 +16,7 @@
 // Struct to store command line options
 struct globalArgs_t
 {
-    int num; /* -d option */
+    char *fileName; /* -d option */
     char **inputFiles; /* input files */
     int numOfInputFiles; /* # of input files */
     int randomize; /* --randomize option */
@@ -51,7 +52,10 @@ int main(int argc, char *argv[]) {
         switch (opt)
         {
         case 'f':
-            globalArgs.num = atoi(optarg);
+            globalArgs.fileName = optarg;
+            printf("-f selected\n");
+            printf("File name is: %s\n", globalArgs.fileName);
+            read_file(globalArgs.fileName);
             break;
 
         case 'h': /* fall-through intentional */
@@ -73,3 +77,9 @@ int main(int argc, char *argv[]) {
     return (EXIT_SUCCESS);
 }
 
+
+void display_usage(void)
+{
+    puts("tsp - A program using a genetic algorithm to solve TSP problems.");
+    exit(EXIT_FAILURE);
+}
