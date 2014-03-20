@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/location.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/parser.o
 
@@ -63,15 +64,20 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tsp-ga: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tsp-ga ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/location.o: location.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.c) -g -Werror -std=c99 -MMD -MP -MF $@.d -o ${OBJECTDIR}/location.o location.c
+
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.c) -g -Werror -std=c89 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -Werror -std=c99 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.c
 
 ${OBJECTDIR}/parser.o: parser.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.c) -g -Werror -std=c89 -MMD -MP -MF $@.d -o ${OBJECTDIR}/parser.o parser.c
+	$(COMPILE.c) -g -Werror -std=c99 -MMD -MP -MF $@.d -o ${OBJECTDIR}/parser.o parser.c
 
 # Subprojects
 .build-subprojects:

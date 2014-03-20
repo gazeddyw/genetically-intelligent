@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>location.h</itemPath>
       <itemPath>parser.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -13,6 +14,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>location.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>parser.c</itemPath>
     </logicalFolder>
@@ -39,7 +41,7 @@
       </toolsSet>
       <compileType>
         <cTool>
-          <standard>2</standard>
+          <standard>3</standard>
           <commandlineTool>gcc</commandlineTool>
           <warningLevel>3</warningLevel>
         </cTool>
@@ -52,6 +54,10 @@
           <warningLevel>3</warningLevel>
         </asmTool>
       </compileType>
+      <item path="location.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="location.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="parser.c" ex="false" tool="0" flavor2="0">
@@ -82,6 +88,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="location.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="location.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="parser.c" ex="false" tool="0" flavor2="0">

@@ -13,8 +13,9 @@
 
 
 /**
+ * Pass in file name from the cmd and read it in.
  * 
- * @param fileName The file to be read in
+ * @param fileName The file to be read in, const as it will not be modified.
  */
 void read_file(const char *fileName)
 {
@@ -28,6 +29,8 @@ void read_file(const char *fileName)
         printf("Error opening file\n");
     }
     printf("File %s opened\n", fileName);
+    
+    
     
     free(path);
     fclose(fp);
