@@ -17,7 +17,8 @@ typedef struct
 {
     double x;
     double y;
-} location;
+}
+location;
 
 
 location* createLocation();

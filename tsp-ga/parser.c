@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "parser.h"
+#include "location.h"
 
 
 /**
@@ -30,7 +31,11 @@ void read_file(const char *fileName)
     }
     printf("File %s opened\n", fileName);
     
-    
+    location *city = createLocation();
+    setXPos(city, 10.0);
+    setYPos(city, 5.0);
+    printf("CITY CO-ORDINATES:\tX: %f\tY: %f\n", city->x, city->y);
+    destroyLocation(city);
     
     free(path);
     fclose(fp);
