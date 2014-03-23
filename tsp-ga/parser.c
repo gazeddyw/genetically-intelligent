@@ -28,8 +28,13 @@ void read_file(const char *fileName)
     if ((fp = fopen(path, "r")) == NULL)
     {
         printf("Error opening file\n");
+        exit(1);
     }
-    printf("File %s opened\n", fileName);
+    else
+    {
+        printf("File %s opened\n", fileName);
+    }
+    
     
     location *city = createLocation();
     setXPos(city, 10.0);
