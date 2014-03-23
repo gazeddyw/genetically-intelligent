@@ -35,6 +35,7 @@ static const struct option longOpts[] = {
 };
 
 
+// Function Declarations
 void display_usage();
 
 
