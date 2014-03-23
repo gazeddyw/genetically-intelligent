@@ -28,7 +28,7 @@ void read_file(const char *fileName)
     if ((fp = fopen(path, "r")) == NULL)
     {
         printf("Error opening file\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     else
     {
