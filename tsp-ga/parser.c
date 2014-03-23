@@ -14,7 +14,7 @@
 
 
 /**
- * Pass in file name from the cmd and read it in.
+ * Pass in file name from cmd-line and read it in.
  * 
  * @param fileName The file to be read in, const as it will not be modified.
  */
