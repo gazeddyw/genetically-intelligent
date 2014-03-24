@@ -36,7 +36,7 @@ static const struct option longOpts[] = {
 
 
 // Function Declarations
-void display_usage();
+void display_usage(void);
 
 
 /*
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
             globalArgs.fileName = optarg;
             printf("-f selected\n");
             printf("File name is: %s\n", globalArgs.fileName);
-            read_file(globalArgs.fileName);
+            openFile(globalArgs.fileName);
             break;
 
         case 'h': /* fall-through intentional */
