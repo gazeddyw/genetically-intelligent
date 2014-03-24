@@ -82,6 +82,7 @@ int main(int argc, char *argv[]) {
 
 void display_usage(void)
 {
-    puts("tsp - A program using a genetic algorithm to solve TSP problems.");
+    puts("tsp-ga - A program using a genetic algorithm to solve TSP problems.");
+    puts("usage: tsp-ga [-f <filename>]");
     exit(EXIT_FAILURE);
 }
