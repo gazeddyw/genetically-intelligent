@@ -55,7 +55,10 @@ void openFile(const char *fileName)
  */
 void parseFile(FILE *fp)
 {
+    bool dimensionRecord = false;
+    bool nodeRecord = false;
     char buffer[1024];
+    
     while (fgets(buffer, 1024, fp) != NULL)
     {
         //printf("%s", buffer);
@@ -75,7 +78,6 @@ void parseFile(FILE *fp)
             
             //printf("%d: %s\n", i, token);
             //puts("");
-            bool dimensionRecord = false;
 
             for (str2 = token; ; str2 = NULL)
             {
@@ -84,20 +86,29 @@ void parseFile(FILE *fp)
                 {
                     break;
                 }
+                if (nodeRecord == true)
+                {
+                    // Prints out the ID, X and Y coord on a separate line,
+                    // one subtoken each time through the loop. 
+                    printf("%s\n", subtoken);
+                }
                 if (dimensionRecord == true)
                 {
                     int dim = (int) strtol(subtoken, NULL, 0);
                     printf(" --> %d\n", dim);
                     dimensionRecord = false;
                 }
-                if (strcmp(subtoken, "DIMENSION") == 0)
+                if (strncmp(subtoken, "DIMEN", 5) == 0)
                 {
                     dimensionRecord = true;
                     printf(" --> %s\n", token);
                 }
-                
-                
+                else if (strncmp(subtoken, "NODE", 4) == 0)
+                {
+                    nodeRecord = true;
+                }
             }
+            
         }
         
     }
