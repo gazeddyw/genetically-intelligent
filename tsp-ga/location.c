@@ -12,7 +12,7 @@
 
 location* createLocation()
 {
-    location *loc = malloc(sizeof(loc));
+    location *loc = malloc(sizeof(location));
     
     return loc;
 }

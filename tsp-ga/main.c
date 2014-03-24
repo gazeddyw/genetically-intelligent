@@ -42,7 +42,10 @@ void display_usage();
 /*
  * 
  */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
+    if (argc < 2)
+        display_usage();
 
     int opt;
     int longIndex;
@@ -82,7 +85,7 @@ int main(int argc, char *argv[]) {
 
 void display_usage(void)
 {
-    puts("tsp-ga - A program using a genetic algorithm to solve TSP problems.");
+    puts("tsp-ga - A genetic algorithm to solve TSP problems.\n");
     puts("usage: tsp-ga [-f <filename>]");
     exit(EXIT_FAILURE);
 }
