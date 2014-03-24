@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "parser.h"
 #include "location.h"
 
@@ -57,34 +58,48 @@ void parseFile(FILE *fp)
     char buffer[1024];
     while (fgets(buffer, 1024, fp) != NULL)
     {
-        printf("%s", buffer);
-        
-    }
-    
-    char *str1, *str2, *token, *subtoken;
-    char *saveptr1, *saveptr2;
-    char *delimiter = ":";
-    char *subdelim = ":";
-    int i;
-    
-    for (i = 1, str1 = buffer; ; i++, str1 = NULL)
-    {
-        token = strtok(str1, delimiter);
-        if (token == NULL)
+        //printf("%s", buffer);
+        char *str1, *str2, *token, *subtoken;
+        char *saveptr1, *saveptr2;
+        char *delimiter = "\n";
+        char *subdelim = ": ";
+        int i;
+
+        for (i = 1, str1 = buffer; ; i++, str1 = NULL)
         {
-            break;
-        }
-        printf("%d: %s\n", i, token);
-        
-        for (str2 = token; ; str2 = NULL)
-        {
-            subtoken = strtok(str2, subdelim);
-            if (subtoken == NULL)
+            token = strtok(str1, delimiter);
+            if (token == NULL)
             {
                 break;
             }
-            printf(" --> %s\n", subtoken);
+            
+            //printf("%d: %s\n", i, token);
+            //puts("");
+            bool dimensionRecord = false;
+
+            for (str2 = token; ; str2 = NULL)
+            {
+                subtoken = strtok(str2, subdelim);
+                if (subtoken == NULL)
+                {
+                    break;
+                }
+                if (dimensionRecord == true)
+                {
+                    int dim = (int) strtol(subtoken, NULL, 0);
+                    printf(" --> %d\n", dim);
+                    dimensionRecord = false;
+                }
+                if (strcmp(subtoken, "DIMENSION") == 0)
+                {
+                    dimensionRecord = true;
+                    printf(" --> %s\n", token);
+                }
+                
+                
+            }
         }
+        
     }
     
 }
