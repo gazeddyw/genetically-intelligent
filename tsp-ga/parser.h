@@ -18,6 +18,7 @@ extern "C" {
 
 
 void openFile(const char *fileName);
+int readDimentionality(FILE *fp);
 location** parseTSPFile(FILE *fp);
 
 

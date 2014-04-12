@@ -51,6 +51,20 @@ void openFile(const char *fileName)
 
 
 /**
+ * Scan opened file to read the dimentionality (number of nodes)
+ * of the current file.
+ * 
+ * @return 
+ */
+int readDimentionality(FILE *fp)
+{
+    bool dimensionRecord = false;
+    char buffer[1024];
+    
+    return 0;
+}
+
+/**
  * Parse the file opened by openFile function.
  * 
  * @param fp
@@ -65,9 +79,7 @@ location** parseTSPFile(FILE *fp)
     
     while (fgets(buffer, 1024, fp) != NULL)
     {
-        //printf("%s", buffer);
         char *str1, *str2, *token, *subtoken;
-        char *saveptr1, *saveptr2;
         char *delimiter = "\n";
         char *subdelim = ": ";
         int i;
