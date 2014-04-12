@@ -28,7 +28,7 @@ void openFile(const char *fileName)
     
     // A pointer to an array of pointers to locations
     location **locationArray;
-    
+
     if ((fp = fopen(path, "r")) == NULL)
     {
         printf("Error opening file\n");
