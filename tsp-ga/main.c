@@ -37,6 +37,7 @@ static const struct option longOpts[] = {
 
 // Function Declarations
 void display_usage(void);
+void runTSP(const char *fileName);
 
 
 /*
@@ -59,7 +60,7 @@ int main(int argc, char *argv[])
             globalArgs.fileName = optarg;
             printf("-f selected\n");
             printf("File name is: %s\n", globalArgs.fileName);
-            openFile(globalArgs.fileName);
+            runTSP(globalArgs.fileName);
             break;
 
         case 'h': /* fall-through intentional */
@@ -80,6 +81,47 @@ int main(int argc, char *argv[])
         }
     }
     return (EXIT_SUCCESS);
+}
+
+
+/**
+ * Pass in file name from cmd-line and read it in. Start main program execution.
+ * 
+ * @param fileName The file to be read in, const as it will not be modified.
+ */
+void runTSP(const char *fileName)
+{
+    FILE *fp;
+    // +1 for NULL terminator '\0'
+    char *path = malloc(sizeof(FILE_PATH) + sizeof(fileName) + 1);
+    strcpy(path, FILE_PATH);
+    strcat(path, fileName);
+
+    if ((fp = fopen(path, "r")) == NULL)
+    {
+        printf("Error opening file\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("File %s opened\n", fileName);
+    int dimensionality = parseTSPDimensionality(fp);
+    printf("Dimension: %d\n", dimensionality);
+    
+    // A pointer to an array of pointers to locations
+    location *locationArray[dimensionality];
+    
+    parseTSPNodes(fp, locationArray);
+    
+    printf("CITY %ld CO-ORDINATES:\tX: %f\tY: %f\n",
+            locationArray[0]->id, locationArray[0]->x, locationArray[0]->y);
+    
+    for (int i = 0; i < dimensionality; i++)
+    {
+        destroyLocation(locationArray[i]);
+    }
+    
+    free(path);
+    fclose(fp);
 }
 
 

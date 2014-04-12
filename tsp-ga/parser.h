@@ -15,11 +15,11 @@ extern "C" {
 #include "location.h"
 
 #define FILE_PATH "/home/gareth/tsp/"
+#define MAX_LINE_LENGTH 127
 
 
-void openFile(const char *fileName);
-int readDimentionality(FILE *fp);
-location** parseTSPFile(FILE *fp);
+int parseTSPDimensionality(FILE *fp);
+location** parseTSPNodes(FILE *fp, location *locArray[]);
 
 
 #ifdef	__cplusplus

@@ -14,70 +14,74 @@
 
 
 /**
- * Pass in file name from cmd-line and read it in.
- * 
- * @param fileName The file to be read in, const as it will not be modified.
- */
-void openFile(const char *fileName)
-{
-    FILE *fp;
-    // +1 for NULL terminator '\0'
-    char *path = malloc(sizeof(FILE_PATH) + sizeof(fileName) + 1);
-    strcpy(path, FILE_PATH);
-    strcat(path, fileName);
-    
-    // A pointer to an array of pointers to locations
-    location **locationArray;
-
-    if ((fp = fopen(path, "r")) == NULL)
-    {
-        printf("Error opening file\n");
-        exit(EXIT_FAILURE);
-    }
-    else
-    {
-        printf("File %s opened\n", fileName);
-        locationArray = parseTSPFile(fp);
-    }
-    
-    printf("CITY %ld CO-ORDINATES:\tX: %f\tY: %f\n",
-            locationArray[5]->id, locationArray[5]->x, locationArray[5]->y);
-    
-    //for (int i = 0; i < )
-    
-    free(path);
-    fclose(fp);
-}
-
-
-/**
- * Scan opened file to read the dimentionality (number of nodes)
+ * Scan opened file to read the dimensionality (number of nodes)
  * of the current file.
  * 
  * @return 
  */
-int readDimentionality(FILE *fp)
+int parseTSPDimensionality(FILE *fp)
 {
     bool dimensionRecord = false;
-    char buffer[1024];
+    char buffer[MAX_LINE_LENGTH];
+    int dimen = 0;
+    
+    while (fgets(buffer, MAX_LINE_LENGTH, fp) != NULL)
+    {
+        char *str1, *str2, *token, *subtoken;
+        char *delimiter = "\n";
+        char *subdelim = ": ";
+        int i;
+
+        for (i = 0, str1 = buffer; ; i++, str1 = NULL)
+        {
+            token = strtok(str1, delimiter);
+            if (token == NULL)
+            {
+                break;
+            }
+            
+            for (str2 = token; ; str2 = NULL)
+            {
+                subtoken = strtok(str2, subdelim);
+                if (subtoken == NULL)
+                {
+                    break;
+                }
+                if (dimensionRecord == true)
+                {
+                    // If dimensionality has been recorded, return it.
+                    int dim = (int) strtol(subtoken, NULL, 0);
+                    printf(" --> %d\n", dim);
+                    return dim;
+                }
+                if (strncmp(subtoken, "DIMEN", 5) == 0)
+                {
+                    dimensionRecord = true;
+                    printf(" --> %s\n", token);
+                }
+            }
+            
+        }
+    }
     
     return 0;
 }
+
 
 /**
  * Parse the file opened by openFile function.
  * 
  * @param fp
  */
-location** parseTSPFile(FILE *fp)
+location** parseTSPNodes(FILE *fp, location *locArray[])
 {
     bool dimensionRecord = false;
     bool nodeRecord = false;
-    char buffer[1024];
+    char buffer[MAX_LINE_LENGTH];
     int locationCounter = 0;
-    location **locArray;
+    //location **locArray;
     
-    while (fgets(buffer, 1024, fp) != NULL)
+    while (fgets(buffer, MAX_LINE_LENGTH, fp) != NULL)
     {
         char *str1, *str2, *token, *subtoken;
         char *delimiter = "\n";
@@ -135,29 +139,12 @@ location** parseTSPFile(FILE *fp)
                     }
                     count++;
                 }
-                if (dimensionRecord == true)
-                {
-                    int dim = (int) strtol(subtoken, NULL, 0);
-                    printf(" --> %d\n", dim);
-                    locArray = malloc(sizeof(location) * dim);
-                    printf(" --> size of location: %ld\n", sizeof(location));
-                    printf(" --> size of locArray: %ld\n", 
-                            (sizeof(location) * dim));
-                    dimensionRecord = false;
-                }
-                if (strncmp(subtoken, "DIMEN", 5) == 0)
-                {
-                    dimensionRecord = true;
-                    printf(" --> %s\n", token);
-                }
-                else if (strncmp(subtoken, "NODE", 4) == 0)
+                if (strncmp(subtoken, "NODE", 4) == 0)
                 {
                     nodeRecord = true;
                 }
             }   
         }
     }
-    printf("CITY %ld CO-ORDINATES:\tX: %f\tY: %f\n",
-            locArray[0]->id, locArray[0]->x, locArray[0]->y);
     return locArray;
 }
