@@ -121,10 +121,11 @@ void runTSP(const char *fileName)
     
     for (int i = 0; i < (dimensionality - 1); i++)
     {
-        // TODO
         double weight = calculateWeight(locationArray[i], locationArray[i+1]);
         printf("Location %d -> %d weight: %.3f\n", i, (i + 1), weight);
     }
+    
+    // NEED TO THINK ADOUT G.A. - SELECT RANDOM LOCATIONS TO ADD TO CHROMOSOMES
     
     
     // Free all location nodes before exiting
