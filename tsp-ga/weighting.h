@@ -14,7 +14,7 @@ extern "C" {
     
 #include "location.h"
 
-float calculateWeight(location *loc1, location *loc2);
+double calculateWeight(location *loc1, location *loc2);
 
 
 #ifdef	__cplusplus

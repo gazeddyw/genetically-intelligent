@@ -121,7 +121,7 @@ void runTSP(const char *fileName)
     
     for (int i = 0; i < dimensionality; i++)
     {
-        
+        // TODO
         calculateWeight(locationArray[i], locationArray[i + 1]);
     }
     
