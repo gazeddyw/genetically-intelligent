@@ -15,7 +15,7 @@ extern "C" {
 
 typedef struct
 {
-    int id;
+    long id;
     double x;
     double y;
 }
@@ -25,14 +25,14 @@ location;
 location* createLocation();
 void destroyLocation(location *loc);
 
-void setId(location *loc, int id);
-int getId(location *loc, int id);
+void setLocationId(location *loc, int id);
+int getLocationId(location *loc, int id);
 
-void setXPos(location *loc, double x);
-double getXPos(location *loc);
+void setLocationXPos(location *loc, double x);
+double getLocationXPos(location *loc);
 
-void setYPos(location *loc, double y);
-double getYPos(location *loc);
+void setLocationYPos(location *loc, double y);
+double getLocationYPos(location *loc);
 
 
 #ifdef	__cplusplus

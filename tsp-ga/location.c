@@ -24,37 +24,37 @@ void destroyLocation(location *loc)
 }
 
 
-void setId(location *loc, int id)
+void setLocationId(location *loc, int id)
 {
     loc->id = id;
 }
 
 
-int getId(location *loc, int id)
+int getLocationId(location *loc, int id)
 {
     return loc->id;
 }
 
 
-void setXPos(location *loc, double x)
+void setLocationXPos(location *loc, double x)
 {
     loc->x = x;
 }
 
 
-double getXPos(location *loc)
+double getLocationXPos(location *loc)
 {
     return loc->x;
 }
 
 
-void setYPos(location *loc, double y)
+void setLocationYPos(location *loc, double y)
 {
     loc->y = y;
 }
 
 
-double getYPos(location *loc)
+double getLocationYPos(location *loc)
 {
     return loc->y;
 }

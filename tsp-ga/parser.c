@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "parser.h"
-#include "location.h"
 
 
 /**
@@ -22,9 +21,13 @@
 void openFile(const char *fileName)
 {
     FILE *fp;
-    char *path = malloc(sizeof(FILE_PATH) + sizeof(fileName));
+    // +1 for NULL terminator '\0'
+    char *path = malloc(sizeof(FILE_PATH) + sizeof(fileName) + 1);
     strcpy(path, FILE_PATH);
     strcat(path, fileName);
+    
+    // A pointer to an array of pointers to locations
+    location **locationArray;
     
     if ((fp = fopen(path, "r")) == NULL)
     {
@@ -34,14 +37,13 @@ void openFile(const char *fileName)
     else
     {
         printf("File %s opened\n", fileName);
-        parseFile(fp);
+        locationArray = parseTSPFile(fp);
     }
     
-    location *city = createLocation();
-    setXPos(city, 10.0);
-    setYPos(city, 5.0);
-    //printf("CITY CO-ORDINATES:\tX: %f\tY: %f\n", city->x, city->y);
-    destroyLocation(city);
+    printf("CITY %ld CO-ORDINATES:\tX: %f\tY: %f\n",
+            locationArray[5]->id, locationArray[5]->x, locationArray[5]->y);
+    
+    //for (int i = 0; i < )
     
     free(path);
     fclose(fp);
@@ -53,11 +55,13 @@ void openFile(const char *fileName)
  * 
  * @param fp
  */
-void parseFile(FILE *fp)
+location** parseTSPFile(FILE *fp)
 {
     bool dimensionRecord = false;
     bool nodeRecord = false;
     char buffer[1024];
+    int locationCounter = 0;
+    location **locArray;
     
     while (fgets(buffer, 1024, fp) != NULL)
     {
@@ -68,7 +72,7 @@ void parseFile(FILE *fp)
         char *subdelim = ": ";
         int i;
 
-        for (i = 1, str1 = buffer; ; i++, str1 = NULL)
+        for (i = 0, str1 = buffer; ; i++, str1 = NULL)
         {
             token = strtok(str1, delimiter);
             if (token == NULL)
@@ -76,9 +80,12 @@ void parseFile(FILE *fp)
                 break;
             }
             
-            //printf("%d: %s\n", i, token);
-            //puts("");
-
+            printf("Entering next line...\n");
+            int count = 0;
+            
+            long id;
+            double x;
+            double y;
             for (str2 = token; ; str2 = NULL)
             {
                 subtoken = strtok(str2, subdelim);
@@ -88,14 +95,42 @@ void parseFile(FILE *fp)
                 }
                 if (nodeRecord == true)
                 {
-                    // Prints out the ID, X and Y coord on a separate line,
-                    // one subtoken each time through the loop. 
-                    printf("%s\n", subtoken);
+                    /*
+                     * Adds the ID, X and Y coords to each struct in the 
+                     * location array, on each pass of the outer for loop.
+                     * Prints out the ID, X and Y coord on a separate line,
+                     * one subtoken each time through the loop. 
+                     */
+                    switch (count)
+                    {
+                        case 0:
+                            id = strtol(subtoken, NULL, 10);
+                            //printf("%ld\n", locArray[i]->id);
+                            break;
+                        case 1:
+                            x = strtod(subtoken, NULL);
+                            //printf("%f\n", locArray[i]->x);
+                            break;
+                        case 2:
+                            y = strtod(subtoken, NULL);
+                            //printf("%f\n", locArray[i]->y);
+                            locArray[locationCounter] = createLocation();
+                            setLocationId(locArray[locationCounter], id);
+                            setLocationXPos(locArray[locationCounter], x);
+                            setLocationYPos(locArray[locationCounter], y);
+                            locationCounter++;
+                            break;
+                    }
+                    count++;
                 }
                 if (dimensionRecord == true)
                 {
                     int dim = (int) strtol(subtoken, NULL, 0);
                     printf(" --> %d\n", dim);
+                    locArray = malloc(sizeof(location) * dim);
+                    printf(" --> size of location: %ld\n", sizeof(location));
+                    printf(" --> size of locArray: %ld\n", 
+                            (sizeof(location) * dim));
                     dimensionRecord = false;
                 }
                 if (strncmp(subtoken, "DIMEN", 5) == 0)
@@ -107,10 +142,10 @@ void parseFile(FILE *fp)
                 {
                     nodeRecord = true;
                 }
-            }
-            
+            }   
         }
-        
     }
-    
+    printf("CITY %ld CO-ORDINATES:\tX: %f\tY: %f\n",
+            locArray[0]->id, locArray[0]->x, locArray[0]->y);
+    return locArray;
 }

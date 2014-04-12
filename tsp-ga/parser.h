@@ -11,13 +11,14 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
-
+    
+#include "location.h"
 
 #define FILE_PATH "/home/gareth/tsp/"
 
 
 void openFile(const char *fileName);
-void parseFile(FILE *fp);
+location** parseTSPFile(FILE *fp);
 
 
 #ifdef	__cplusplus
