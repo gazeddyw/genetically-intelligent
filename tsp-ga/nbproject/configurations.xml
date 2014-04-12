@@ -54,6 +54,9 @@
           <commandlineTool>as</commandlineTool>
           <warningLevel>3</warningLevel>
         </asmTool>
+        <linkerTool>
+          <commandLine>-lm</commandLine>
+        </linkerTool>
       </compileType>
       <item path="location.c" ex="false" tool="0" flavor2="0">
       </item>
