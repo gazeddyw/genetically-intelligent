@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <getopt.h>
 #include "parser.h"
+#include "weighting.h"
 
 
 // Struct to store command line options
@@ -112,9 +113,20 @@ void runTSP(const char *fileName)
     
     parseTSPNodes(fp, locationArray);
     
-    printf("CITY %ld CO-ORDINATES:\tX: %f\tY: %f\n",
-            locationArray[0]->id, locationArray[0]->x, locationArray[0]->y);
+    for (int i = 0; i < dimensionality; i++)
+    {
+        printf("CITY %ld CO-ORDINATES:\tX: %f\tY: %f\n",
+                locationArray[i]->id, locationArray[i]->x, locationArray[i]->y);
+    }
     
+    for (int i = 0; i < dimensionality; i++)
+    {
+        
+        calculateWeight(locationArray[i], locationArray[i + 1]);
+    }
+    
+    
+    // Free all location nodes before exiting
     for (int i = 0; i < dimensionality; i++)
     {
         destroyLocation(locationArray[i]);

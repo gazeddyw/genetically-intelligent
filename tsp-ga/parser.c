@@ -73,7 +73,7 @@ int parseTSPDimensionality(FILE *fp)
  * 
  * @param fp
  */
-location** parseTSPNodes(FILE *fp, location *locArray[])
+void parseTSPNodes(FILE *fp, location *locArray[])
 {
     bool dimensionRecord = false;
     bool nodeRecord = false;
@@ -146,5 +146,4 @@ location** parseTSPNodes(FILE *fp, location *locArray[])
             }   
         }
     }
-    return locArray;
 }

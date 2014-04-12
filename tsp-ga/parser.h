@@ -19,7 +19,7 @@ extern "C" {
 
 
 int parseTSPDimensionality(FILE *fp);
-location** parseTSPNodes(FILE *fp, location *locArray[]);
+void parseTSPNodes(FILE *fp, location *locArray[]);
 
 
 #ifdef	__cplusplus

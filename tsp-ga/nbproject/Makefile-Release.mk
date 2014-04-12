@@ -37,7 +37,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/location.o \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/parser.o
+	${OBJECTDIR}/parser.o \
+	${OBJECTDIR}/weighting.o
 
 
 # C Compiler Flags
@@ -78,6 +79,11 @@ ${OBJECTDIR}/parser.o: parser.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -std=c99 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/parser.o parser.c
+
+${OBJECTDIR}/weighting.o: weighting.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -std=c99 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/weighting.o weighting.c
 
 # Subprojects
 .build-subprojects:
