@@ -17,7 +17,7 @@
 // Struct to store command line options
 struct globalArgs_t
 {
-    char *fileName; /* -d option */
+    char *fileName; /* -f option */
     char **inputFiles; /* input files */
     int numOfInputFiles; /* # of input files */
     int randomize; /* --randomize option */
@@ -25,19 +25,22 @@ struct globalArgs_t
 globalArgs;
 
 // option string
-static const char *optString = "f:h";
+static const char *optString = "f:hv";
 
 // Array of option structs to hold info about long options supported
 static const struct option longOpts[] = {
     { "file-name", required_argument, NULL, 'f' },
     { "rand-int", no_argument, NULL, 0 },
     { "help", no_argument, NULL, 'h' },
+    { "verbose", no_argument, NULL, 'v' },
+    { "version", no_argument, NULL, 0 },
     { NULL, no_argument, NULL, 0 }
 };
 
 
 // Function Declarations
-void display_usage(void);
+void displayUsage(void);
+void displayVersion(void);
 void runTSP(const char *fileName);
 
 
@@ -47,7 +50,7 @@ void runTSP(const char *fileName);
 int main(int argc, char *argv[])
 {
     if (argc < 2)
-        display_usage();
+        displayUsage();
 
     int opt;
     int longIndex;
@@ -57,28 +60,34 @@ int main(int argc, char *argv[])
     {
         switch (opt)
         {
-        case 'f':
-            globalArgs.fileName = optarg;
-            printf("-f selected\n");
-            printf("File name is: %s\n", globalArgs.fileName);
-            runTSP(globalArgs.fileName);
-            break;
+            case 'v':
+                
+            case 'f':
+                globalArgs.fileName = optarg;
+                printf("-f selected\n");
+                printf("File name is: %s\n", globalArgs.fileName);
+                runTSP(globalArgs.fileName);
+                break;
 
-        case 'h': /* fall-through intentional */
-        case '?':
-            display_usage();
-            break;
+            case 'h': /* fall-through intentional */
+            case '?':
+                displayUsage();
+                break;
 
-        case 0: /* long option without a short equivalent */
-            if (strcmp("rand-int", longOpts[longIndex].name) == 0)
-            {
-                globalArgs.randomize = 1;
-            }
-            break;
+            case 0: /* long option without a short equivalent */
+                if (strcmp("rand-int", longOpts[longIndex].name) == 0)
+                {
+                    globalArgs.randomize = 1;
+                }
+                else if (strcmp("version", longOpts[longIndex].name) == 0)
+                {
+                    displayVersion();
+                }
+                break;
 
-        default:
-            display_usage();
-            break;
+            default:
+                displayUsage();
+                break;
         }
     }
     return (EXIT_SUCCESS);
@@ -139,9 +148,16 @@ void runTSP(const char *fileName)
 }
 
 
-void display_usage(void)
+void displayUsage(void)
 {
     puts("tsp-ga - A genetic algorithm to solve TSP problems.\n");
     puts("usage: tsp-ga [-f <filename>]");
     exit(EXIT_FAILURE);
+}
+
+
+void displayVersion(void)
+{
+    puts("tsp-ga: v0.9");
+    exit(EXIT_SUCCESS);
 }

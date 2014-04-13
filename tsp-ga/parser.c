@@ -97,8 +97,8 @@ void parseTSPNodes(FILE *fp, location *locArray[])
             }
             
             printf("Entering next line...\n");
-            int count = 0;
             
+            int count = 0;
             long id;
             double x;
             double y;
