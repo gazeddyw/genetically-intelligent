@@ -10,7 +10,7 @@
 #include "location.h"
 
 
-location* createLocation()
+location* createLocation(void)
 {
     location *loc = malloc(sizeof(location));
     

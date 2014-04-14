@@ -22,7 +22,7 @@ typedef struct
 location;
 
 
-location* createLocation();
+location* createLocation(void);
 void destroyLocation(location *loc);
 
 void setLocationId(location *loc, int id);

@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/chromosome.o \
 	${OBJECTDIR}/location.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/parser.o \
@@ -64,6 +65,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tsp-ga: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tsp-ga ${OBJECTFILES} ${LDLIBSOPTIONS} -lm
+
+${OBJECTDIR}/chromosome.o: chromosome.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -std=c99 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/chromosome.o chromosome.c
 
 ${OBJECTDIR}/location.o: location.c 
 	${MKDIR} -p ${OBJECTDIR}

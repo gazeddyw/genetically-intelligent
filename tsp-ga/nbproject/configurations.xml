@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>chromosome.h</itemPath>
       <itemPath>location.h</itemPath>
       <itemPath>parser.h</itemPath>
       <itemPath>weighting.h</itemPath>
@@ -15,6 +16,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>chromosome.c</itemPath>
       <itemPath>location.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>parser.c</itemPath>
@@ -58,6 +60,10 @@
           <commandLine>-lm</commandLine>
         </linkerTool>
       </compileType>
+      <item path="chromosome.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="chromosome.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="location.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="location.h" ex="false" tool="3" flavor2="0">
@@ -95,6 +101,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="chromosome.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="chromosome.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="location.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="location.h" ex="false" tool="3" flavor2="0">
