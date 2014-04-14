@@ -23,7 +23,7 @@ typedef struct
 } chromosome;
     
     
-chromosome* createChromosome(int dimension);
+chromosome* createChromosome(location *loc[], int dimension, void (*funcPtr)());
 void destroyChromosome(chromosome *chromo);
 void insertLocation(chromosome *chromo);
 void deleteLocation(chromosome *chromo);

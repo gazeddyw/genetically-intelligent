@@ -7,6 +7,7 @@
       <itemPath>chromosome.h</itemPath>
       <itemPath>location.h</itemPath>
       <itemPath>parser.h</itemPath>
+      <itemPath>tspController.h</itemPath>
       <itemPath>weighting.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -20,6 +21,7 @@
       <itemPath>location.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>parser.c</itemPath>
+      <itemPath>tspController.c</itemPath>
       <itemPath>weighting.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -74,6 +76,10 @@
       </item>
       <item path="parser.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tspController.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tspController.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="weighting.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="weighting.h" ex="false" tool="3" flavor2="0">
@@ -114,6 +120,10 @@
       <item path="parser.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tspController.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tspController.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="weighting.c" ex="false" tool="0" flavor2="0">
       </item>

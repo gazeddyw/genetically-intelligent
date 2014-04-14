@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/location.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/parser.o \
+	${OBJECTDIR}/tspController.o \
 	${OBJECTDIR}/weighting.o
 
 
@@ -85,6 +86,11 @@ ${OBJECTDIR}/parser.o: parser.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -std=c99 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/parser.o parser.c
+
+${OBJECTDIR}/tspController.o: tspController.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -std=c99 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/tspController.o tspController.c
 
 ${OBJECTDIR}/weighting.o: weighting.c 
 	${MKDIR} -p ${OBJECTDIR}
