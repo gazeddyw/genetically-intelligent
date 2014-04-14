@@ -61,6 +61,8 @@ int main(int argc, char *argv[])
         switch (opt)
         {
             case 'v':
+                printf("Verbose mode!\n");
+                break;
                 
             case 'f':
                 globalArgs.fileName = optarg;
