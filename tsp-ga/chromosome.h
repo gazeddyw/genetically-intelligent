@@ -23,7 +23,7 @@ struct locateNode
 };
     
     
-chromosome* createChromosome(void);
+chromosome* createChromosome(int dimension);
 void destroyChromosome(chromosome *chromo);
 
 
