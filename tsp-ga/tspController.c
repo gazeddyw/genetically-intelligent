@@ -58,6 +58,14 @@ void runTSP(const char *fileName)
     chromosome *chromo = createChromosome(locationArray, 
             dimensionality, myFunc);
     
+    // Got lost here... Stuck.
+    int i = 0;
+    while(i < dimensionality)
+    {
+        printf("chromo: %d\tID: %ld\n", i++, chromo->loc->id);
+        chromo = chromo->next;
+    }
+    
     // Free all location nodes before exiting
     for (int i = 0; i < dimensionality; i++)
     {

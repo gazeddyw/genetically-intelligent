@@ -12,18 +12,25 @@
 
 chromosome* createChromosome(location *loc[], int dimension, void (*funcPtr)())
 {
-    chromosome *chromo = malloc(sizeof(chromosome));
     // Initialise empty chromosome of length = dimension first?
-    
+    chromosome *first;
     for (int i = 0; i < dimension; i++)
     {
         // Loop through entire locationArray in main, add location
         // to random position in chromosome (list of locations).
-        insertLocation(chromo, loc[i]);
+        chromosome *current = malloc(sizeof(chromosome));
+        if (i == 0)
+        {
+            first = current;
+        }
+        // Got lost here... Stuck.
+        current->index = i;
+        current->loc = loc[i];
+        current->next = malloc(sizeof(chromosome));
     }
     
     funcPtr();
-    return chromo;
+    return first;
 }
 
 

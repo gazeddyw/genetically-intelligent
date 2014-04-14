@@ -15,12 +15,13 @@
 extern "C" {
 #endif
 
-//typedef struct locateNode chromosome;
-typedef struct
+typedef struct locationNode chromosome;
+struct locationNode
 {
     location *loc;
-    location *next;
-} chromosome;
+    int index;
+    chromosome *next;
+};
     
     
 chromosome* createChromosome(location *loc[], int dimension, void (*funcPtr)());
