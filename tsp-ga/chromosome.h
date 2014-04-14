@@ -25,8 +25,8 @@ typedef struct
     
 chromosome* createChromosome(location *loc[], int dimension, void (*funcPtr)());
 void destroyChromosome(chromosome *chromo);
-void insertLocation(chromosome *chromo);
-void deleteLocation(chromosome *chromo);
+void insertLocation(chromosome *chromo, location *loc);
+void deleteLocation(chromosome *chromo, location *loc);
 
 
 #ifdef	__cplusplus
