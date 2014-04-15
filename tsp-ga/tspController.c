@@ -48,17 +48,20 @@ void runTSP(const char *fileName)
                 locationArray[i]->id, locationArray[i]->x, locationArray[i]->y);
     }
     
+    double totalWeight = 0.0;
     for (int i = 0; i < (dimensionality - 1); i++)
     {
         double weight = calculateWeight(locationArray[i], locationArray[i+1]);
         printf("Location %d -> %d weight: %.3f\n", i, (i + 1), weight);
+        totalWeight += weight;
     }
+    printf("Total weight: %.3f\n", totalWeight);
     
     // NEED TO THINK ADOUT G.A. - SELECT RANDOM LOCATIONS TO ADD TO CHROMOSOMES
     chromosome *chromo = createChromosome(locationArray, 
             dimensionality, myFunc);
     
-    // Got lost here... Stuck.
+    // Free all locations in the 'chromo' chromosome.
     int i = 0;
     while(chromo != NULL)
     {
@@ -74,7 +77,6 @@ void runTSP(const char *fileName)
     {
         destroyLocation(locationArray[i]);
     }
-    //destroyChromosome(chromo);
     
     free(path);
     fclose(fp);

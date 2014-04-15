@@ -19,12 +19,10 @@ chromosome* createChromosome(location *loc[], int dimension, void (*funcPtr)())
     {
         // Loop through entire locationArray in main, add location
         // to random position in chromosome (list of locations).
-        
         if (i == 0)
         {
             first = current;
         }
-        // Got lost here... Stuck.
         current->index = i;
         current->loc = loc[i];
         if (i < (dimension - 1))
