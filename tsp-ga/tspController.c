@@ -60,10 +60,13 @@ void runTSP(const char *fileName)
     
     // Got lost here... Stuck.
     int i = 0;
-    while(i < dimensionality)
+    while(chromo != NULL)
     {
-        printf("chromo: %d\tID: %ld\n", i++, chromo->loc->id);
+        printf("chromo: %d\tID: %ld\n", i, chromo->loc->id);
+        chromosome *eraser = chromo;
         chromo = chromo->next;
+        destroyChromosome(eraser);
+        printf("chromo %d destroyed!\n", i++);
     }
     
     // Free all location nodes before exiting
@@ -71,7 +74,7 @@ void runTSP(const char *fileName)
     {
         destroyLocation(locationArray[i]);
     }
-    destroyChromosome(chromo);
+    //destroyChromosome(chromo);
     
     free(path);
     fclose(fp);

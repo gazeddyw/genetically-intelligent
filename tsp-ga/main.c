@@ -90,6 +90,7 @@ int main(int argc, char *argv[])
                 break;
         }
     }
+    puts("\nFINISHED! :)\n");
     return (EXIT_SUCCESS);
 }
 
