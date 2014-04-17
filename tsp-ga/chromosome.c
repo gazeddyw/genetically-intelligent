@@ -12,7 +12,7 @@
 
 chromosome* createChromosome(location *loc[], int dimension, void (*funcPtr)())
 {
-    // Initialise empty chromosome of length = dimension first?
+    // NEED TO *RANDOMISE* SELECTION OF LOCATION TO ADD TO CHROMOSOME
     chromosome *first;
     chromosome *current = malloc(sizeof(chromosome));
     for (int i = 0; i < dimension; i++)
