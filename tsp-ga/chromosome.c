@@ -13,16 +13,12 @@
 chromosome* createChromosome(location *loc[], int dimension, void (*funcPtr)())
 {
     // NEED TO *RANDOMISE* SELECTION OF LOCATION TO ADD TO CHROMOSOME
-    chromosome *first;
     chromosome *current = malloc(sizeof(chromosome));
+    chromosome *first = current;
     for (int i = 0; i < dimension; i++)
     {
         // Loop through entire locationArray in main, add location
         // to random position in chromosome (list of locations).
-        if (i == 0)
-        {
-            first = current;
-        }
         current->index = i;
         current->loc = loc[i];
         if (i < (dimension - 1))
